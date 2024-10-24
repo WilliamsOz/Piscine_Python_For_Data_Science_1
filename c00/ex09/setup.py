@@ -31,8 +31,8 @@ setup(
     description='A sample test package',
     author='wiozsert',
     author_email='wiozsert@student.42.fr',
-    home_page='https://github.com/WilliamsOz/Piscine_python/\
-        /c00/ex09/ft_package',
+    url='https://github.com/WilliamsOz/Piscine_python/tree/main/\
+c00/ex09/ft_package',
     packages=find_packages(),
     license='MIT',
     location="/home/wiozsert/...",
