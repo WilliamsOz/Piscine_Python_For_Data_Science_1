@@ -14,19 +14,27 @@ def give_bmi(height: list[int | float], weight: list[int | float])\
         Return the list of BMI (weight/height²)
     """
     try:
-        if not height or not weight or\
-            not isinstance(height, list) or\
-                not isinstance(weight, list):
-            raise AssertionError("Arguments must be a list of int or float.")
+        if len(height) != len(weight) or not height or not weight:
+            raise ValueError("List of arguments must have same size.")
 
-        if len(height) != len(weight):
-            raise AssertionError("List of arguments must have same size.")
+        if not isinstance(height, list) or\
+                not isinstance(weight, list):
+            raise TypeError("Arguments must be a list of int or float.")
+
+        for h, w in zip(height, weight):
+            if not isinstance(h, int) and not isinstance(h, float) or\
+                    not isinstance(w, int) and not isinstance(w, float):
+                raise TypeError("List must contains only int or float.")
+
+        for h, w in zip(height, weight):
+            if h <= 0 or w <= 0:
+                raise ValueError("Arguments must be positive.")
 
         if not all(isinstance(n, int) for n in height) and\
                 not all(isinstance(n, float) for n in height) or\
                 not all(isinstance(n, int) for n in weight) and\
                 not all(isinstance(n, float) for n in weight):
-            raise AssertionError("Arguments must be int or float.")
+            raise TypeError("Arguments must be int or float.")
 
         np_height = np.array(height)
         np_weight = np.array(weight)
@@ -36,11 +44,8 @@ def give_bmi(height: list[int | float], weight: list[int | float])\
         for item in bmi:
             tab.append(float(item))
 
-    except ValueError as error:
-        print(ValueError.__name__ + ":", error)
-        exit(1)
-    except AssertionError as error:
-        print(AssertionError.__name__ + ":", error)
+    except Exception as error:
+        print("\033[91mError :", error, "\033[0m")
         exit(1)
     return tab
 
@@ -61,14 +66,13 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
                 not all(isinstance(n, int) for n in bmi) and\
                 not all(isinstance(n, float) for n in bmi) or\
                 not isinstance(limit, int):
-            raise AssertionError("Arguments type error.")
+            raise TypeError("All arguments must be int or float.")
 
         tab = []
         for item in bmi:
             tab.append(item > limit)
 
-    except ValueError as error:
-        print(ValueError.__name__ + ":", error)
-    except AssertionError as error:
-        print(AssertionError.__name__ + ":", error)
+    except Exception as error:
+        print("\033[91mError :", error, "\033[0m")
+        exit(1)
     return tab

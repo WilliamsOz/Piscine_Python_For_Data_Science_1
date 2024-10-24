@@ -3,6 +3,7 @@ from give_bmi import give_bmi, apply_limit
 # height = (2.21)
 # height = [1.80]
 height = [2.71, 1.15]
+# height = [-2.71, -1.15]
 # height = ['c', 'c']
 # height = [4.42, 'c']
 # height = [2.21, 4.42, 8.84]
