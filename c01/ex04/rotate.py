@@ -1,7 +1,7 @@
-import numpy as np
-import matplotlib.pyplot as plt
 from load_image import ft_load
+import matplotlib.pyplot as plt
 from PIL import Image
+import numpy as np
 import sys
 import os
 
@@ -44,7 +44,9 @@ def print_row_first_element(array, ind):
 
 def main():
     """
-    Load an image, print some information and display it after zooming.
+    Load an image, cut a square part from it and transpose it.
+    It should display it, print the new shape, and the data of the image
+    after the transpose.
     """
     try:
         if len(sys.argv) != 2:
@@ -58,23 +60,14 @@ def main():
         if img is None:
             raise AssertionError("Failed to load image.")
 
-        print_row_first_element(ft_load(path), 0)
-
-        zoomed_image = img.crop((400, 100, 800, 500))
-        zoomed_image.save("zoomed_image.jpg")
-        print(f"New shape after slicing: {zoomed_image.size}")
-
-        grayscale_image = zoomed_image.convert("L")
-        print_row_first_element(np.array(grayscale_image), 1)
-
-        plt.imshow(grayscale_image, cmap="gray")
-        plt.title("Zoomed Image")
-        plt.axis('on')
-        plt.show()
+        square_crop_img = img.crop((400, 100, 800, 500))
+        square_crop_img.save("square_crop.jpg")
+        print(f"The shape of image is: {square_crop_img.size}")
 
     except Exception as error:
-        print("\033[31m", Exception.__name__ + ":", error, "\033[0m")
-    return 0
+        print(Exception.__name__ + ":", error)
+        exit(1)
+    return
 
 
 if __name__ == "__main__":
