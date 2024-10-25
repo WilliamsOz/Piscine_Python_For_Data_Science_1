@@ -17,11 +17,11 @@ def slice_me(family: list, start: int, end: int) -> list:
         if not family:
             raise AssertionError("Empty 2D array.")
         if not isinstance(family, list):
-            raise AssertionError("Arguments must be a 2D array.")
+            raise TypeError("Arguments must be a 2D array.")
         if not (isinstance(n, int) for n in family):
-            raise AssertionError("Arguments inside 2D array must be integer.")
+            raise TypeError("Arguments inside 2D array must be integer.")
         if start >= len(family):
-            raise AssertionError("The start can't be greater or equal than \
+            raise ValueError("The start can't be greater or equal than \
 the size of 2D array.")
 
         len_item = len(family[0])
@@ -36,8 +36,8 @@ the size of 2D array.")
 
         arr = arr[start:end].tolist()
 
-    except AssertionError as error:
-        print(AssertionError.__name__ + ":", error)
+    except Exception as error:
+        print("\033[31m", Exception.__name__ + ":", error, "\033[0m")
         exit(1)
 
     return arr
