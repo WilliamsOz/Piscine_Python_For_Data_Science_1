@@ -42,6 +42,28 @@ def print_row_first_element(array, ind):
         count += 1
 
 
+def transpose_image(image):
+    """
+    Transpose the image given.
+
+    Args :
+        image (PIL.Image.Image) : The image to be transposed.
+
+    Returns :
+        The new image transposed.
+    """
+    width, height = image.size
+    transposed_image = Image.new("RGB", (height, width))
+
+    for y in range(height):
+        for x in range(width):
+            pixel = image.getpixel((x, y))
+            transposed_image.putpixel((y, x), pixel)
+
+    return transposed_image
+
+
+
 def main():
     """
     Load an image, cut a square part from it and transpose it.
@@ -63,6 +85,17 @@ def main():
         square_crop_img = img.crop((400, 100, 800, 500))
         square_crop_img.save("square_crop.jpg")
         print(f"The shape of image is: {square_crop_img.size}")
+        print_row_first_element(np.array(square_crop_img.convert("L")), 1)
+
+        transposed_img = transpose_image(square_crop_img)
+        print(f"New shape after Transpose: {transposed_img.size}")
+        print(np.array(transposed_img.convert("L")))
+        grayscale_transposed_img = transposed_img.convert("L")
+
+        plt.imshow(grayscale_transposed_img, cmap="gray")
+        plt.title("Transposed Image")
+        plt.axis('on')
+        plt.show()
 
     except Exception as error:
         print(Exception.__name__ + ":", error)
