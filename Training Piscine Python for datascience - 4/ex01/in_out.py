@@ -64,6 +64,8 @@ def outer(x: int | float, function) -> object:
         Returns:
         float: The result of the calculation performed by the provided function
         """
+        nonlocal count
+        count += 1
         nonlocal x
         result = function(x)
         x = result
