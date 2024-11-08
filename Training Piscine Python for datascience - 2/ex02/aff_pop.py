@@ -32,30 +32,50 @@ def main():
     """
     dataset = load("population_total.csv")
 
-    french_data = dataset[dataset['country'] == 'France'].iloc[:, 1:]
-    germany_data = dataset[dataset['country'] == 'Germany'].iloc[:, 1:]
+    if dataset is None:
+        exit(1)
 
-    french_pop = french_data.values.flatten()
-    german_pop = germany_data.values.flatten()
-    years = french_data.columns.astype(int)
+    if 'country' not in dataset.columns:
+        print("\033[31mError: \'country\' columns not found\033[0m")
+        exit(1)
 
-    french_pop = [prepare_data_str_to_int(pop) for pop in french_pop]
-    german_pop = [prepare_data_str_to_int(pop) for pop in german_pop]
+    if not (dataset['country'] == 'France').any():
+        print("\033[31mError: \'France\' data not found\033[0m")
+        exit(1)
+    if not (dataset['country'] == 'Germany').any():
+        print("\033[31mError: \'Germany\' data not found\033[0m")
+        exit(1)
 
-    plt.plot(years, french_pop, label="France")
-    plt.plot(years, german_pop, label="Germany")
+    try:
+        french_data = dataset[dataset['country'] == 'France'].iloc[:, 1:]
+        germany_data = dataset[dataset['country'] == 'Germany'].iloc[:, 1:]
 
-    plt.title("Population Projections")
-    plt.xlabel("Years")
-    plt.xticks(range(1800, 2050, 40))
-    plt.xlim(1800, 2050)
-    plt.ylabel("Population")
-    plt.legend()
-    plt.tight_layout()
-    max_pop = max(max(french_pop), max(german_pop))
-    y_ticks = [i * 1e7 for i in range(int(max_pop / 1e7) + 1)]
-    plt.yticks(y_ticks, ["{:,.0f}M".format(pop / 1e6) for pop in y_ticks])
-    plt.show()
+        french_pop = french_data.values.flatten()
+        german_pop = germany_data.values.flatten()
+        years = french_data.columns.astype(int)
+
+        french_pop = [prepare_data_str_to_int(pop) for pop in
+                      french_pop if pop == pop]
+        german_pop = [prepare_data_str_to_int(pop) for pop in
+                      german_pop if pop == pop]
+
+        plt.plot(years, french_pop, label="France")
+        plt.plot(years, german_pop, label="Germany")
+
+        plt.title("Population Projections")
+        plt.xlabel("Years")
+        plt.xticks(range(1800, 2050, 40))
+        plt.xlim(1800, 2050)
+        plt.ylabel("Population")
+        plt.legend()
+        plt.tight_layout()
+        max_pop = max(max(french_pop), max(german_pop))
+        y_ticks = [i * 1e7 for i in range(int(max_pop / 1e7) + 1)]
+        plt.yticks(y_ticks, ["{:,.0f}M".format(pop / 1e6) for pop in y_ticks])
+        plt.show()
+
+    except Exception as error:
+        print("\033[31m", Exception.__name__ + ":", error, "\033[0m")
 
     return 0
 

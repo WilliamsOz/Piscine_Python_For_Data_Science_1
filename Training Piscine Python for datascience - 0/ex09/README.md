@@ -1,13 +1,9 @@
-# ft_package
+pip install build
+python -m build # create the dist folder
 
-Ceci est un package Python simple pour compter les occurrences d'un élément
-dans une liste.
+# Install: one of these
+pip install ./dist/ft_package-0.0.1.tar.gz
+pip install ./dist/ft_package-0.0.1-py3-none-any.whl
 
-## Utilisation
-
-```python
-from ft_package import count_in_list
-
-ma_liste = [1, 2, 3, 2, 4, 2]
-count = count_in_list(ma_liste, 2)
-print(count)  # Output: 3
+# Check install
+pip show -v ft_package

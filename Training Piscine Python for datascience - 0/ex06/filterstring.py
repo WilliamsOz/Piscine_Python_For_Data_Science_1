@@ -18,8 +18,8 @@ def main():
         arg2 = sys.argv[2]
         try:
             arg2 = int(arg2)
-        except AssertionError as error:
-            print(AssertionError.__name__ + ":", error)
+        except ValueError:
+            print(AssertionError.__name__ + ":", "the arguments are bad")
             sys.exit(1)
 
         filtered_list = \
@@ -27,8 +27,6 @@ def main():
 
         print(filtered_list)
 
-    except ValueError as error:
-        print(ValueError.__name__ + ":", error)
     except AssertionError as error:
         print(AssertionError.__name__ + ":", error)
 

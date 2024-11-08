@@ -30,10 +30,8 @@ def give_bmi(height: list[int | float], weight: list[int | float])\
             if h <= 0 or w <= 0:
                 raise ValueError("Arguments must be positive.")
 
-        if not all(isinstance(n, int) for n in height) and\
-                not all(isinstance(n, float) for n in height) or\
-                not all(isinstance(n, int) for n in weight) and\
-                not all(isinstance(n, float) for n in weight):
+        if not all(isinstance(n, (int, float)) for n in height) or\
+                not all(isinstance(n, (int, float)) for n in weight):
             raise TypeError("Arguments must be int or float.")
 
         np_height = np.array(height)
@@ -59,7 +57,7 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
         limit (int) : Limit BMI not to exceed.
 
     Returns :
-        Return True or False is the BMI limit is exceed.
+        Return True if the limit is exceed and False otherwise.
     """
     try:
         if not isinstance(bmi, list) or\

@@ -3,37 +3,22 @@ from PIL import Image
 import os
 
 
-def print_row_first_element(array):
+def trim(array, x, y, width, height, depth=3):
     """
-    Print a formatted display of an 2D array given.
+        Trim an array using the given parameters
 
-    Args :
-        array (array) : The array to print.
-        ind (int) : An int indicator to specifying the format:
-                    0 for single bracket and 1 for triple brackets.
+        Args :
+            array : The array to trim.
+            x and y : Coordinate of the upper left point of the
+            rectancle to be cut.
+            width : Width of the rectangle.
+            height : Height of the rectangle.
+            depth : Depth of the color, numbers of layers, 3 is for RGB.
+
+        Returns :
+            Return a sub part of array defined by parameters given.
     """
-    count = 0
-    for row in array:
-        count += 1
-    length = count
-    count = 0
-    for row in array:
-        if count == 0:
-            print("[[", row[0], sep="")
-        if count > 0 and count < 3 or count > length - 4:
-            if count == length - 1:
-                print("  ", row[0], "]]", sep="")
-            elif count < length - 1:
-                print("  ", row[0], sep="")
-            else:
-                if count == length - 1:
-                    print(row[0], sep="")
-                else:
-                    print(row[0], sep="")
-        if count == 2:
-            print("    ...")
-        count += 1
-    print("    ...")
+    return array[y:y+width, x:x+height, :depth]
 
 
 def ft_load(path: str) -> np.ndarray:
@@ -55,7 +40,8 @@ def ft_load(path: str) -> np.ndarray:
 
         print(f"The shape of image is: (\
 {img.size[1]}, {img.size[0]}, {img.layers})")
-        print_row_first_element(np.array(img))
+
+        print(np.array(img))
 
         return np.array(img)
 

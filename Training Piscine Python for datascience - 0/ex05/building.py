@@ -2,19 +2,6 @@ import sys
 from string import punctuation
 
 
-def catch_input():
-    """"
-    Ask for input in case no string is given.
-
-    Return the input.
-    """
-    try:
-        string = input("What is the text to count?\n")
-    except EOFError:
-        pass
-    return str(string)
-
-
 def n_lower_chars(string):
     """"
     Return number of lower char in string.
@@ -44,7 +31,7 @@ def n_space_chars(string):
     """"
     Return number of spaces in string.
     """
-    return sum(1 for c in string if c == ' ')
+    return sum(1 for char in string if char.isspace())
 
 
 def n_digit_chars(string):
@@ -93,7 +80,8 @@ def main():
         if len(sys.argv) > 2:
             raise AssertionError("more than one argument is provided")
         elif len(sys.argv) == 1:
-            string = catch_input()
+            print("What is the text to count?")
+            string = sys.stdin.readline()
             data = get_data(string)
         else:
             data = get_data(sys.argv[1])

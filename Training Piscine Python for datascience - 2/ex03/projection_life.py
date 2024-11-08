@@ -12,19 +12,28 @@ def main():
     path_le = "life_expectancy_years.csv"
     gross_national_product_data = load(path_gnp)
     life_expectancy_data = load(path_le)
-    year_1900_column = '1900'
-    gnp_1900 = gross_national_product_data[year_1900_column]
-    le_1900 = life_expectancy_data[year_1900_column]
 
-    plt.figure(figsize=(10, 6))
-    plt.scatter(gnp_1900, le_1900)
-    plt.title("Life Expectancy and Gross Domestic Product (Year 1900)")
-    plt.xlabel("Gross Domestic Product")
-    plt.ylabel("Life Expectancy (Years)")
-    plt.xscale("log")
-    plt.xticks(ticks=[300, 1000, 10000], labels=["300", "1k", "10k"])
-    plt.tight_layout()
-    plt.show()
+    if gross_national_product_data is None or life_expectancy_data is None:
+        exit(1)
+
+    year_1900_column = '1900'
+
+    try:
+        gnp_1900 = gross_national_product_data[year_1900_column]
+        le_1900 = life_expectancy_data[year_1900_column]
+
+        plt.figure(figsize=(10, 6))
+        plt.scatter(gnp_1900, le_1900)
+        plt.title("Life Expectancy and Gross Domestic Product (Year 1900)")
+        plt.xlabel("Gross Domestic Product")
+        plt.ylabel("Life Expectancy")
+        plt.xscale("log")
+        plt.xticks(ticks=[300, 1000, 10000], labels=["300", "1k", "10k"])
+        plt.tight_layout()
+        plt.show()
+
+    except Exception as error:
+        print("\033[31m", Exception.__name__ + ":", error, "\033[0m")
 
     return 0
 

@@ -1,7 +1,6 @@
 from time import time
 from datetime import datetime
 
-
 timestamp = time()
 
 print("Seconds since January 1, 1970:", "{:,.4f}".format(timestamp), "or",

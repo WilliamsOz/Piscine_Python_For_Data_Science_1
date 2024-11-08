@@ -20,9 +20,6 @@ def ft_load(path: str) -> np.ndarray:
 
         img = Image.open(path)
 
-        print(f"The shape of image is: (\
-{img.size[1]}, {img.size[0]}, {img.layers})")
-
         return np.array(img)
 
     except Exception as error:
