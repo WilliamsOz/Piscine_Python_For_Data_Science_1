@@ -13,7 +13,7 @@ class King(Baratheon, Lannister):
             first_name (str) : A string representing the name of the character.
             is_alive (bool) : A state of the character, true by default.
         """
-        super().__init__(first_name, is_alive)
+        super().__init__(first_name, is_alive=True)
 
     def get_eyes(self):
         """

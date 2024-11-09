@@ -27,20 +27,16 @@ class Character(ABC):
         """
         pass
 
+
 class Stark(Character):
-    """
-    Class representing a "Stark" character, inherit from Character class.
-    """
+    """Class representing a "Stark" character, inherit from Character
+class."""
     def __init__(self, first_name, is_alive=True):
-        """
-        Constructor for Stark class.
-        """
+        """Constructor for Stark class."""
         self.first_name = first_name
         self.is_alive = is_alive
 
     def die(self):
-        """
-        This method override the abstract method and change the state
-        of is_alive to False.
-        """
+        """This method override the abstract method and change the
+state of is_alive to False."""
         self.is_alive = False
