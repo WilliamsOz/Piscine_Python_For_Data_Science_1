@@ -1,29 +1,24 @@
 Day 1: Starting
 Exercise 00
-Exploring basic data objects
+Create and modify list, tuple and dict.
 
 Exercise 01
-Write a script to print time in a specific format
+Write a script to print time in a specific format.
 
 Exercise 02
-Exploring object types
+Exploring object types.
 
 Exercise 03
-All types of NULL in python
+All types of NULL in python.
 
 Exercise 04
-The Even and the Odd
+Create a function which print even or odd depending on number given.
 
 Exercise 05
 Program, with a main, which takes a single string argument and displays the sums of its upper-case characters, lower-case characters, punctuation characters, digits and spaces
 
 Exercise 06
-Part 1:
-
 Recode your own ft_filter, it should behave like the original built-in function (it should return the same thing as "print(filter.doc)"), you should use list comprehensions to recode your ft_filter.
-
-Part 2:
-
 Create a program that accepts two arguments: a string(S), and an integer(N). The program should output a list of words from S that have a length greater than N.
 
 • Words are separated from each other by space characters.
@@ -52,6 +47,8 @@ Create a function called ft_tqdm. The function must copy the function tqdm with 
 
 Exercise 09
 Create a package in python the way you want, it will appear in the list of installed packages when you type the command "pip list" and display its characteristics when you type "pip show -v ft_package"
+
+________________________________________________________________________
 
 Day 2: Array
 Exercise 00
@@ -94,17 +91,23 @@ You have some restriction operators for each function: (you can only use those g
 
 • grey: =, /
 
+________________________________________________________________________
+
 Day 3: DataTable
 Exercise 00
-Simply learn how to load a database from a csv file
+Simply learn how to load a database from a csv file.
 
 Exercise 01, 02, 03
-Create 3 diagramm about different parts of the data, 2 plot and 1 scatter
+Create 3 diagramm about different parts of the data, 2 plot and 1 scatter.
 
-Day 4: OOP
-Replayed Game of Thrones in python, genius references where the Lennister class takes everything
+________________________________________________________________________
 
-Day 5: Dod
+Day 4: OOP - Oriented Object Programing
+Replayed Game of Thrones in python, genius references where the Lannister class takes everything.
+
+________________________________________________________________________
+
+Day 5: DOD - Data Oriented Design
 Exercise 00
 Statistic and kwargs
 
